@@ -41,23 +41,33 @@
             <div class="columns center">
             {% for column in columns %}
                 <div class="column-{{ column }} rounded-rectangle">
-                {% for button in buttons %}
-                    <div class="button city-button rounded-rectangle center">
-                        <a class="center" href="#"></a>
-                    </div>
-                {% endfor %}
+                    {% if column == 1 %}
+                        {% for city in cities1 %}
+                            <div class="button city-button rounded-rectangle center">
+                                <a class="center" href="/city={{ city.name_en }}">{{ city.name_uk }}</a>
+                            </div>
+                        {% endfor %}
+                    {% elif column == 2 %}
+                        {% for city in cities2 %}
+                            <div class="button city-button rounded-rectangle center">
+                                <a class="center" href="/city={{ city.name_en }}">{{ city.name_uk }}</a>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
                 </div>
             {% endfor %}
             </div>
             <div class="paginator-container center">
                 <div class="paginator rounded-rectangle center">
-                    <a class="button page-button rounded-rectangle center" href="#">
+                    <a class="button page-button rounded-rectangle center"
+                       href="?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}#{% endif %}">
                         Previous
                     </a>
                     <div class="page-number rounded-rectangle center">
-                        <p class="number">{{ pagination.page }}</p>
+                        <p class="number">{{ page.number }}</p>
                     </div>
-                    <a class="button page-button rounded-rectangle center" href="">
+                    <a class="button page-button rounded-rectangle center"
+                       href="?page={% if page.has_next %}{{ page.next_page_number }}{% else %}#{% endif %}">
                         Next
                     </a>
                 </div>
@@ -69,5 +79,7 @@
             <div class="footer-text">© 2023 Weatheropia</div>
         </div>
     </footer>
+    <!-- 
     <script src="static/js/search.js"></script>
+    -->
 {% endblock content %}
