@@ -236,8 +236,8 @@ img {
 }
 
 .search-result {
+    display: block;
     font-size: 20px;
     color: #CC2936;
     font-family: "Roboto Mono", sans-serif;
-    display: none;
 }
