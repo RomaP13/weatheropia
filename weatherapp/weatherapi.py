@@ -2,11 +2,11 @@ import requests
 from datetime import datetime
 
 
-def get_current_weather(city):
+def get_current_weather(city, lang):
     api_key = open("API_KEY").read()
     base_url = "https://api.openweathermap.org/data/2.5/weather?"
 
-    url = base_url + "appid=" + api_key + "&q=" + city
+    url = base_url + "appid=" + api_key + "&q=" + city + "&lang=" + lang
     response = requests.get(url).json()
 
     current_weather = {
@@ -15,17 +15,17 @@ def get_current_weather(city):
         "sunrise_time": datetime.utcfromtimestamp(response["sys"]["sunrise"] + response["timezone"]),
         "sunset_time": datetime.utcfromtimestamp(response["sys"]["sunset"] + response["timezone"]),
         "wind_speed": response["wind"]["speed"],
-        "description": response["weather"][0]["description"],
+        "description": response["weather"][0]["description"].capitalize,
     }
 
     return current_weather
 
 
-def get_weekly_forecast(city):
+def get_weekly_forecast(city, lang):
     api_key = open("API_KEY").read()
     base_url = "https://api.openweathermap.org/data/2.5/forecast?"
 
-    url = base_url + "appid=" + api_key + "&q=" + city
+    url = base_url + "appid=" + api_key + "&q=" + city + "&lang=" + lang
     response = requests.get(url).json()
 
     forecast_list = response["list"]
@@ -43,7 +43,7 @@ def get_weekly_forecast(city):
                 "temp_celsius": int(forecast["main"]["temp"] - 273.15),
                 "humidity": forecast["main"]["humidity"],
                 "wind_speed": forecast["wind"]["speed"],
-                "description": forecast["weather"][0]["description"],
+                "description": forecast["weather"][0]["description"].capitalize,
             })
 
     return weekly_forecast

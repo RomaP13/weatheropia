@@ -1,29 +1,42 @@
 {% extends "base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block css %}
-<link href="{% static 'weather/css/city.css' %}" rel="stylesheet">
+  <link href="{% static 'weather/css/city.css' %}" rel="stylesheet">
 {% endblock css %}
 
 {% block content %}
 <div class="container">
+  {% get_current_language as LANGUAGE_CODE %}
+  <h1 class="display-4 text-center">
+    {% if LANGUAGE_CODE == "uk" %} 
+      {{ city.name_uk }}
+    {% else %} 
+      {{ city.name_en }}
+    {% endif %}
+  </h1>
   <div class="row">
     <div class="col-md-6">
       <div class="card bg-primary text-white mb-4">
-        <div class="card-header">Current Weather in {{ city }}</div>
+        <div class="card-header">
+          {% translate "Current Weather" %}
+        </div>
         <div class="card-body">
           <h5 class="card-title">{{ weather.description }}</h5>
-          <p class="card-text">Temperature: {{ weather.temp_celsius }}°C</p>
-          <p class="card-text">Humidity: {{ weather.humidity }}%</p>
-          <p class="card-text">Wind Speed: {{ weather.wind_speed }} m/s</p>
-          <p class="card-text">Sunrise Time: {{ weather.sunrise_time }}</p>
-          <p class="card-text">Sunset Time: {{ weather.sunset_time }}</p>
+          <p class="card-text">{% translate "Temperature" %}: {{ weather.temp_celsius }}°C</p>
+          <p class="card-text">{% translate "Humidity" %}: {{ weather.humidity }}%</p>
+          <p class="card-text">{% translate "Wind Speed" %}: {{ weather.wind_speed }} {% translate "m/s" %}</p>
+          <p class="card-text">{% translate "Sunrise Time" %}: {{ weather.sunrise_time }}</p>
+          <p class="card-text">{% translate "Sunset Time" %}: {{ weather.sunset_time }}</p>
         </div>
       </div>
     </div>
     <div class="col-md-6">
       <div class="card bg-secondary text-white mb-4">
-        <div class="card-header">Weekly Forecast for {{ city }}</div>
+        <div class="card-header">
+          {% translate "Weekly Forecast" %} 
+        </div>
         <div class="card-body">
           <div class="row">
             {% for forecast in forecast %}
@@ -33,9 +46,9 @@
                     <h5 class="card-title">{{ forecast.date | date:"D" }}</h5>
                     <p class="card-text">{{ forecast.date | date:"M d" }}</p>
                     <p class="card-text">{{ forecast.description }}</p>
-                    <p class="card-text">Temp: {{ forecast.temp_celsius }}°C</p>
-                    <p class="card-text">Humidity: {{ forecast.humidity }}%</p>
-                    <p class="card-text">Wind: {{ forecast.wind_speed }} m/s</p>
+                    <p class="card-text">{% translate "Temperature" %}: {{ forecast.temp_celsius }}°C</p>
+                    <p class="card-text">{% translate "Humidity" %}: {{ forecast.humidity }}%</p>
+                    <p class="card-text">{% translate "Wind Speed" %}: {{ forecast.wind_speed }} {% translate "m/s" %}</p>
                   </div>
                 </div>
               </div>

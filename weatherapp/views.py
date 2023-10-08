@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.core.paginator import Paginator
+from django.utils.translation import get_language
 from .models import City
 from .weatherapi import get_current_weather, get_weekly_forecast
 
@@ -29,7 +30,7 @@ def index(request):
     if city_name:
         try:
             city = City.objects.get(name_en=city_name)
-            return redirect('city', city=city_name)
+            return redirect('city', city=city)
         except City.DoesNotExist:
             error_message = f"City '{city_name}' not found in the database."
             context["error_message"] = error_message
@@ -38,12 +39,13 @@ def index(request):
 
 
 def city(request, city):
-    current_weather = get_current_weather(city)
-    weekly_forecast = get_weekly_forecast(city)
+    lang = get_language()
+    current_weather = get_current_weather(city, lang)
+    weekly_forecast = get_weekly_forecast(city, lang)
     context = {
         "weather": current_weather,
         "forecast": weekly_forecast,
-        "city": city,
+        "city": City.objects.get(name_en=city),
     }
 
     return render(request, "city.html", context)

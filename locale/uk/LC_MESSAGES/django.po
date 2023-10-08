@@ -1,0 +1,90 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-10-07 08:19+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n % 1 == 0 && n % 10 == 1 && n % 100 != "
+"11 ? 0 : n % 1 == 0 && n % 10 >= 2 && n % 10 <= 4 && (n % 100 < 12 || n % "
+"100 > 14) ? 1 : n % 1 == 0 && (n % 10 ==0 || (n % 10 >=5 && n % 10 <=9) || "
+"(n % 100 >=11 && n % 100 <=14 )) ? 2: 3);\n"
+
+#: weather/settings.py:111 weatherapp/templates/base.html:29
+msgid "English"
+msgstr "Англійська"
+
+#: weather/settings.py:112 weatherapp/templates/base.html:33
+msgid "Ukrainian"
+msgstr "Українська"
+
+#: weatherapp/templates/base.html:25
+msgid "Language"
+msgstr "Мова"
+
+#: weatherapp/templates/base.html:40 weatherapp/templates/base.html:41
+msgid "Search"
+msgstr "Пошук"
+
+#: weatherapp/templates/city.html:20
+msgid "Current Weather"
+msgstr "Погода сьогодні"
+
+#: weatherapp/templates/city.html:23 weatherapp/templates/city.html:47
+msgid "Temperature"
+msgstr "Температура"
+
+#: weatherapp/templates/city.html:24 weatherapp/templates/city.html:48
+msgid "Humidity"
+msgstr "Вологість"
+
+#: weatherapp/templates/city.html:25 weatherapp/templates/city.html:49
+msgid "Wind Speed"
+msgstr "Швидкість вітру"
+
+#: weatherapp/templates/city.html:25 weatherapp/templates/city.html:49
+msgid "m/s"
+msgstr "м/с"
+
+#: weatherapp/templates/city.html:26
+msgid "Sunrise Time"
+msgstr "Час сходу сонця"
+
+#: weatherapp/templates/city.html:27
+msgid "Sunset Time"
+msgstr "Час заходу сонця"
+
+#: weatherapp/templates/city.html:34
+msgid "Weekly Forecast"
+msgstr "Тижневий прогноз погоди"
+
+#: weatherapp/templates/index.html:19
+msgid "Explore Ukraine"
+msgstr "Дослідіть Україну"
+
+#: weatherapp/templates/index.html:23
+msgid "This city is not supported"
+msgstr "Це місто не підтримується"
+
+#: weatherapp/templates/index.html:35
+msgid "Choose your city!"
+msgstr "Оберіть своє місто!"
+
+#: weatherapp/templates/index.html:69
+msgid "Previous"
+msgstr "Попередня"
+
+#: weatherapp/templates/index.html:76
+msgid "Next"
+msgstr "Наступна"

@@ -1,78 +1,88 @@
 {% extends "base.html" %}
+{% load i18n %}
 {% load static %}
 {% block css %}
-    <title>Weather Application</title>
-    <link href="{% static 'weather/css/index.css' %}" rel="stylesheet">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <title>Weatheropia</title>
+  <link href="{% static 'weather/css/index.css' %}" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 {% endblock css %}
 {% block content %}
 <header id="header" class="header">
-    <div class="header-container">
-        <div class="left-side center">
-            <div class="main-title">
-                <p class="title">Weatheropia</p>
-                <p class="subtitle">Explore Ukraine</p>
-            </div>
-            {% if error_message %}
-            <div id="search-result" class="search-result main-title">
-                <p>This city is not supported</p>
-            </div>
-            {% endif %}
-        </div>
-        <div class="right-side center">
-            <img src="{% static 'weather/img/pana.png' %}" alt="pana">
-        </div>
+  <div class="header-container">
+    <div class="left-side center">
+      <div class="main-title">
+        <p class="title">Weatheropia</p>
+        <p class="subtitle">{% translate "Explore Ukraine" %}</p>
+      </div>
+      {% if error_message %}
+      <div id="search-result" class="search-result main-title">
+        <p>{% translate "This city is not supported" %}</p>
+      </div>
+      {% endif %}
     </div>
+    <div class="right-side center">
+      <img src="{% static 'weather/img/pana.png' %}" alt="pana">
+    </div>
+  </div>
 </header>
 <section id="about" class="about">
-    <div class="about-container">
-        <div class="text">
-            <p>Choose your city!</p>
-        </div>
-        <div class="columns center">
-        {% for column in columns %}
-            <div class="column-{{ column }} rounded-rectangle">
-                {% if column == 1 %}
-                    {% for city in cities1 %}
-                        <div class="button city-button rounded-rectangle center">
-                            <a class="center" href="/cities/{{ city.name_en }}">{{ city.name_uk }}</a>
-                        </div>
-                    {% endfor %}
-                {% elif column == 2 %}
-                    {% for city in cities2 %}
-                        <div class="button city-button rounded-rectangle center">
-                            <a class="center" href="/cities/{{ city.name_en }}">{{ city.name_uk }}</a>
-                        </div>
-                    {% endfor %}
-                {% endif %}
-            </div>
-        {% endfor %}
-        </div>
-        <div class="paginator-container center">
-            <div class="paginator rounded-rectangle center">
-                <a class="button page-button rounded-rectangle center"
-                   href="?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}#{% endif %}">
-                    Previous
-                </a>
-                <div class="page-number rounded-rectangle center">
-                    <p class="number">{{ page.number }}</p>
-                </div>
-                <a class="button page-button rounded-rectangle center"
-                   href="?page={% if page.has_next %}{{ page.next_page_number }}{% else %}#{% endif %}">
-                    Next
-                </a>
-            </div>
-        </div>
+  <div class="about-container">
+    <div class="text">
+      <p>{% translate "Choose your city!" %}</p>
     </div>
+    <div class="columns center">
+    {% get_current_language as LANGUAGE_CODE %}
+    {% for column in columns %}
+      <div class="column-{{ column }} rounded-rectangle">
+        {% if column == 1 %}
+          {% for city in cities1 %}
+            <div class="button city-button rounded-rectangle center">
+              {% if LANGUAGE_CODE == "uk" %}
+                <a class="center" href="/{{ request.LANGUAGE_CODE }}/cities/{{ city.name_en }}">{{ city.name_uk }}</a>
+              {% else %}
+                <a class="center" href="/{{ request.LANGUAGE_CODE }}/cities/{{ city.name_en }}">{{ city.name_en }}</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% elif column == 2 %}
+          {% for city in cities2 %}
+            <div class="button city-button rounded-rectangle center">
+              {% if LANGUAGE_CODE == "uk" %}
+                <a class="center" href="/{{ request.LANGUAGE_CODE }}/cities/{{ city.name_en }}">{{ city.name_uk }}</a>
+              {% else %}
+                <a class="center" href="/{{ request.LANGUAGE_CODE }}/cities/{{ city.name_en }}">{{ city.name_en }}</a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      </div>
+    {% endfor %}
+    </div>
+    <div class="paginator-container center">
+      <div class="paginator rounded-rectangle center">
+        <a class="button page-button rounded-rectangle center"
+           href="?page={% if page.has_previous %}{{ page.previous_page_number }}{% else %}#{% endif %}">
+          {% translate "Previous" %}
+        </a>
+        <div class="page-number rounded-rectangle center">
+          <p class="number">{{ page.number }}</p>
+        </div>
+        <a class="button page-button rounded-rectangle center"
+           href="?page={% if page.has_next %}{{ page.next_page_number }}{% else %}#{% endif %}">
+          {% translate "Next" %}
+        </a>
+      </div>
+    </div>
+  </div>
 </section>
 <footer id="footer" class="footer">
-    <div class="footer-container center">
-        <div class="footer-text">© 2023 Weatheropia</div>
-    </div>
+  <div class="footer-container center">
+    <div class="footer-text">© 2023 Weatheropia</div>
+  </div>
 </footer>
 <!-- 
 <script src="static/js/search.js"></script>
