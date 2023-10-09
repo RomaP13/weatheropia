@@ -27,13 +27,18 @@ def index(request):
     }
 
     city_name = request.GET.get("city")
+
     if city_name:
         try:
             city = City.objects.get(name_en=city_name)
-            return redirect('city', city=city)
+            return redirect('city', city=city_name)
         except City.DoesNotExist:
-            error_message = f"City '{city_name}' not found in the database."
-            context["error_message"] = error_message
+            try:
+                city = City.objects.get(name_uk=city_name)
+                return redirect('city', city=city.name_en)
+            except City.DoesNotExist:
+                error_message = f"City '{city_name}' not found in the database."
+                context["error_message"] = error_message
 
     return render(request, "index.html", context)
 

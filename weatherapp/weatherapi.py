@@ -15,7 +15,7 @@ def get_current_weather(city, lang):
         "sunrise_time": datetime.utcfromtimestamp(response["sys"]["sunrise"] + response["timezone"]),
         "sunset_time": datetime.utcfromtimestamp(response["sys"]["sunset"] + response["timezone"]),
         "wind_speed": response["wind"]["speed"],
-        "description": response["weather"][0]["description"].capitalize,
+        "description": response["weather"][0]["description"].capitalize(),
     }
 
     return current_weather
@@ -43,7 +43,7 @@ def get_weekly_forecast(city, lang):
                 "temp_celsius": int(forecast["main"]["temp"] - 273.15),
                 "humidity": forecast["main"]["humidity"],
                 "wind_speed": forecast["wind"]["speed"],
-                "description": forecast["weather"][0]["description"].capitalize,
+                "description": forecast["weather"][0]["description"].capitalize(),
             })
 
     return weekly_forecast
