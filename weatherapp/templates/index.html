@@ -1,15 +1,13 @@
 {% extends "base.html" %}
 {% load i18n %}
 {% load static %}
-{% block css %}
-  <title>Weatheropia</title>
-  <link href="{% static 'weather/css/index.css' %}" rel="stylesheet">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Goblin+One&family=Roboto+Mono:wght@700&display=swap" rel="stylesheet">
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+{% block title %}Weatheropia{% endblock title %}
+
+{% block css %}
+  <link href="{% static 'weather/css/index.css' %}" rel="stylesheet">
 {% endblock css %}
+
 {% block content %}
 <header id="header" class="header">
   <div class="header-container">
@@ -84,7 +82,4 @@
     <div class="footer-text">© 2023 Weatheropia</div>
   </div>
 </footer>
-<!-- 
-<script src="static/js/search.js"></script>
--->
 {% endblock content %}

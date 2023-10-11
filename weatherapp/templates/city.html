@@ -2,6 +2,8 @@
 {% load static %}
 {% load i18n %}
 
+{% block title %}{{ city.name_en }}{% endblock title %}
+
 {% block css %}
   <link href="{% static 'weather/css/city.css' %}" rel="stylesheet">
 {% endblock css %}

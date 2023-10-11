@@ -7,7 +7,7 @@ This is a simple weather application that allows users to search for cities, vie
 ## Installation
 1. Clone this repository:
 ```
-   git clone https://github.com/yourusername/weatheropia.git
+   git clone https://github.com/RomaP13/weatheropia.git
    cd weatheropia
 ```
 2. Install the required Python packages:
