@@ -1,5 +1,6 @@
 # The file to get cities and write them in csv file
 
+import os
 import csv
 import requests
 from bs4 import BeautifulSoup
@@ -36,6 +37,10 @@ def load_data():
 
             cities_en.append(city_en)
             cities_uk.append(city_uk)
+
+    # Check if the CSV file already exists and delete it
+    if os.path.exists("scripts/data/cities.csv"):
+        os.remove("scripts/data/cities.csv")
 
     # Write extracted data to a CSV file
     for city_en, city_uk in zip(cities_en, cities_uk):

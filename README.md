@@ -4,21 +4,35 @@ This is a simple weather application that allows users to search for cities, vie
 
 ![app-preview](preview.png)
 
+## API KEY
+In order to use this program, you will need to obtain an API key by signing up with [this site](https://openweathermap.org/api).
+
 ## Installation
 1. Clone this repository:
 ```
    git clone https://github.com/RomaP13/weatheropia.git
    cd weatheropia
 ```
-2. Install the required Python packages:
+
+2. Create a file named "API_KEY" and add your key in this file.
+
+3. Install the required Python packages:
 ```
 pip install -r requirements.txt
 ```
-3. Run the migrations to create the database:
+
+4. Run the migrations to create the database:
 ```
-python manage.py migrate
+python manage.py migrate --run-syncdb
 ```
-4. Start the development server:
+
+5. Run the following scripts:
+```
+python scripts/main.py
+python manage.py runscript import_data
+```
+
+6. Start the development server:
 ```
 python manage.py runserver
 ```

@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def get_current_weather(city, lang):
-    api_key = open("API_KEY").read()
+    api_key = open("API_KEY").read().replace("\n", "")
     base_url = "https://api.openweathermap.org/data/2.5/weather?"
 
     url = base_url + "appid=" + api_key + "&q=" + city + "&lang=" + lang
@@ -22,7 +22,7 @@ def get_current_weather(city, lang):
 
 
 def get_weekly_forecast(city, lang):
-    api_key = open("API_KEY").read()
+    api_key = open("API_KEY").read().replace("\n", "")
     base_url = "https://api.openweathermap.org/data/2.5/forecast?"
 
     url = base_url + "appid=" + api_key + "&q=" + city + "&lang=" + lang
